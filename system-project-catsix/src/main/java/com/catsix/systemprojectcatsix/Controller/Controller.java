@@ -24,7 +24,23 @@ public class Controller {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
-    public Client login(@Param("client_ID") String client_ID, @Param("client_password") String client_password) {
-        return clientService.login(client_ID, client_password);
+    public String login(@Param("client_ID") String client_ID, @Param("client_password") String client_password) {
+        if(clientService.login(client_ID, client_password) != null) {
+            return "success";
+        }
+        else {
+            return "fail";
+        }
+    }
+    @RequestMapping(value = "/showClientInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public Client showClientInfo(@Param("client_ID") String client_ID) {
+        return clientService.showClientInfo(client_ID);
+    }
+
+    @RequestMapping(value = "/createClient", method = RequestMethod.POST)
+    @ResponseBody
+    void createClient(@Param("client_ID") String client_ID, @Param("client_password") String client_password, @Param("client_name") String client_name, @Param("client_nickname") String client_nickname, @Param("profile_picture") String profile_picture) {
+        clientService.createClient(client_ID, client_password, client_name, client_nickname, profile_picture);
     }
 }

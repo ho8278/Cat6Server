@@ -12,4 +12,13 @@
         WHERE client_ID = #{client_ID}
         AND client_password = #{client_password}
     </select>
+    <select id="showClientInfo" resultType="Client" parameterType="String">
+        SELECT *
+        FROM client
+        WHERE client_ID = #{client_ID}
+    </select>
+    <insert id="createClient" parameterType="String">
+        INSERT client(client_ID, client_password, client_name, client_nickname, profile_picture)
+        VALUES(#{client_ID}, #{client_password}, #{client_name}, #{client_nickname}, #{profile_picture})
+    </insert>
 </mapper>

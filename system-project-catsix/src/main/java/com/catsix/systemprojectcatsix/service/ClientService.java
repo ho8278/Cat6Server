@@ -17,4 +17,12 @@ public class ClientService {
     public Client login(String client_ID, String client_password) {
         return clientMapper.login(client_ID, client_password);
     }
+
+    public Client showClientInfo(String client_ID) {
+        return clientMapper.showClientInfo(client_ID);
+    }
+
+    public void createClient(String client_ID, String client_password, String client_name, String client_nickname, String profile_picture) {
+        clientMapper.createClient(client_ID, client_password, client_name, client_nickname, profile_picture);
+    }
 }
