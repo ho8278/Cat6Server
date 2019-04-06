@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.catsix.systemprojectcatsix.mapper.ClientMapper">
+    <select id="getCurrentDateTime" resultType="String">
+        SELECT NOW()
+    </select>
+    <select id="login" resultType="Client" parameterType="String">
+        SELECT *
+        FROM client
+        WHERE client_ID = #{client_ID}
+        AND client_password = #{client_password}
+    </select>
+</mapper>
