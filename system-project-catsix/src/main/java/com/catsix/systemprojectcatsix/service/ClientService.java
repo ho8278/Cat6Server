@@ -25,4 +25,8 @@ public class ClientService {
     public void createClient(String client_ID, String client_password, String client_name, String client_nickname, String profile_picture) {
         clientMapper.createClient(client_ID, client_password, client_name, client_nickname, profile_picture);
     }
+
+    public void deleteClient(String client_ID) {
+        clientMapper.deleteClient(client_ID);
+    }
 }

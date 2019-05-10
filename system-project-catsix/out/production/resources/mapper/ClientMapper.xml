@@ -17,8 +17,12 @@
         FROM client
         WHERE client_ID = #{client_ID}
     </select>
-    <insert id="createClient" parameterType="String">
+    <insert id="createClient" parameterType="String" keyProperty="client_ID">
         INSERT client(client_ID, client_password, client_name, client_nickname, profile_picture)
         VALUES(#{client_ID}, #{client_password}, #{client_name}, #{client_nickname}, #{profile_picture})
     </insert>
+    <delete id="deleteClient" parameterType="String">
+        DELETE FROM client
+        WHERE client_ID = #{client_ID}
+    </delete>
 </mapper>

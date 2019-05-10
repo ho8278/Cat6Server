@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.catsix.systemprojectcatsix.mapper.ChatRoomMapper">
+    <select id="viewChatRooms" resultType="ChatRoom" parameterType="String">
+        SELECT *
+        FROM chat_room
+        WHERE chat_room_ID IN (SELECT team_chat_room_ID
+        FROM team_chat_room
+        WHERE participate_client_ID = #{client_ID}
+        AND participate_team_ID = #{team_ID})
+    </select>
+    <insert id="createChatRoom" parameterType="String">
+        INSERT chat_room
+        VALUES(#{chat_room_ID}, #{chat_room_name})
+    </insert>
+    <insert id="inviteChatRoom" parameterType="String">
+        INSERT team_chat_room
+        VALUES(#{client_ID}, #{team_ID}, #{chat_room_ID})
+    </insert>
+</mapper>

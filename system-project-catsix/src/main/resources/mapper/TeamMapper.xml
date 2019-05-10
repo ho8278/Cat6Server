@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.catsix.systemprojectcatsix.mapper.TeamMapper">
+    <insert id="createTeam" parameterType="String">
+        INSERT team
+        VALUES(#{team_ID}, #{team_name})
+    </insert>
+    <delete id="deleteTeam" parameterType="String">
+        DELETE FROM team
+        WHERE team_ID = #{team_ID}
+    </delete>
+    <insert id="inviteTeam" parameterType="String">
+        INSERT participate_client_team
+        VALUES(#{client_ID}, #{team_ID})
+    </insert>
+    <select id="viewTeams" resultType="Team" parameterType="String">
+        SELECT *
+        FROM team
+        WHERE team_ID IN (SELECT participate_team_ID
+        FROM participate_client_team
+        WHERE participate_client_ID = #{client_ID})
+    </select>
+    <select id="viewSchedules" resultType="Schedule" parameterType="String">
+        SELECT *
+        FROM schedule
+        WHERE schedule_team_ID = #{team_ID}
+    </select>
+    <insert id="setSchedule" parameterType="String">
+        INSERT schedule
+        VALUES(#{schedule_ID}, #{schedule_start_date}, #{schedule_end_date}, #{schedule_contents}, #{schedule_team_ID})
+    </insert>
+    <delete id="deleteSchedule" parameterType="String">
+        DELETE FROM schedule
+        WHERE schedule_ID = #{schedule_ID}
+    </delete>
+</mapper>
