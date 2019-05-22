@@ -35,4 +35,20 @@
         DELETE FROM schedule
         WHERE schedule_ID = #{schedule_ID}
     </delete>
+    <insert id="registFile" parameterType="String">
+        INSERT file
+        VALUES(#{file_name}, #{file_team_ID})
+    </insert>
+    <select id="viewFiles" resultType="File" parameterType="String">
+        SELECT *
+        FROM file
+        WHERE file_team_ID = #{file_team_ID}
+    </select>
+    <select id="viewParticipateClients" resultType="Client" parameterType="String">
+        SELECT client_ID, client_name, client_nickname, profile_picture
+        FROM client
+        WHERE client_ID IN (SELECT participate_client_ID
+        FROM participate_client_team
+        WHERE participate_team_ID = #{team_ID})
+    </select>
 </mapper>

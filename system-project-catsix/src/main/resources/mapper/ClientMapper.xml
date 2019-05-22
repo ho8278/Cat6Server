@@ -13,6 +13,11 @@
         AND client_password = #{client_password}
     </select>
     <select id="showClientInfo" resultType="Client" parameterType="String">
+        SELECT client_ID, client_name, client_nickname, profile_picture
+        FROM client
+        WHERE client_ID = #{client_ID}
+    </select>
+    <select id="showMyInfo" resultType="Client" parameterType="String">
         SELECT *
         FROM client
         WHERE client_ID = #{client_ID}
@@ -25,4 +30,8 @@
         DELETE FROM client
         WHERE client_ID = #{client_ID}
     </delete>
+    <update id="updateClient" parameterType="String" keyProperty="client_ID">
+        UPDATE client SET client_password = #{client_password}, client_name = #{client_name}, client_nickname = #{client_nickname}, profile_picture = #{profile_picture}
+        WHERE client_ID = #{client_ID}
+    </update>
 </mapper>

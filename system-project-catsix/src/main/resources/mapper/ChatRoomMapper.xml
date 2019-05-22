@@ -6,17 +6,36 @@
     <select id="viewChatRooms" resultType="ChatRoom" parameterType="String">
         SELECT *
         FROM chat_room
-        WHERE chat_room_ID IN (SELECT team_chat_room_ID
-        FROM team_chat_room
-        WHERE participate_client_ID = #{client_ID}
-        AND participate_team_ID = #{team_ID})
+        WHERE chat_room_ID IN (SELECT participate_chat_room_ID
+        FROM participate_client_chat_room
+        WHERE participate_client_ID = #{client_ID})
     </select>
     <insert id="createChatRoom" parameterType="String">
         INSERT chat_room
-        VALUES(#{chat_room_ID}, #{chat_room_name})
+        VALUES(#{chat_room_ID}, #{chat_room_name}, #{team_ID})
     </insert>
     <insert id="inviteChatRoom" parameterType="String">
-        INSERT team_chat_room
-        VALUES(#{client_ID}, #{team_ID}, #{chat_room_ID})
+        INSERT participate_client_chat_room
+        VALUES(#{client_ID}, #{chat_room_ID})
     </insert>
+    <insert id="notice" parameterType="String">
+        INSERT notice
+        VALUES(#{notice_ID}, #{notice_contents}, #{chat_room_ID})
+    </insert>
+    <select id="viewNotice" resultType="Notice" parameterType="String">
+        SELECT *
+        FROM notice
+        WHERE notice_chat_room_ID = #{chat_room_ID}
+    </select>
+    <delete id="deleteNotice" parameterType="String">
+        DELETE FROM notice
+        WHERE notice_chat_room_ID = #{chat_room_ID}
+    </delete>
+    <select id="viewParticipateClients" resultType="Client" parameterType="String">
+        SELECT client_ID, client_name, client_nickname, profile_picture
+        FROM client
+        WHERE client_ID IN (SELECT participate_client_ID
+        FROM participate_client_chat_room
+        WHERE participate_chat_room_ID = #{chat_room_ID})
+    </select>
 </mapper>

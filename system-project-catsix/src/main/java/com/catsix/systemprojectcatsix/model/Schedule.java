@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class Schedule {
     private String schedule_ID;
-    private Date schedule_start_date;
-    private Date schedule_end_date;
+    private String schedule_start_date;
+    private String schedule_end_date;
     private String schedule_contents;
     private String schedule_team_ID;
 
@@ -17,19 +17,19 @@ public class Schedule {
         this.schedule_ID = schedule_ID;
     }
 
-    public Date getSchedule_start_date() {
+    public String getSchedule_start_date() {
         return schedule_start_date;
     }
 
-    public void setSchedule_start_date(Date schedule_start_date) {
+    public void setSchedule_start_date(String schedule_start_date) {
         this.schedule_start_date = schedule_start_date;
     }
 
-    public Date getSchedule_end_date() {
+    public String getSchedule_end_date() {
         return schedule_end_date;
     }
 
-    public void setSchedule_end_date(Date schedule_end_date) {
+    public void setSchedule_end_date(String schedule_end_date) {
         this.schedule_end_date = schedule_end_date;
     }
 

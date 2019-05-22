@@ -1,22 +1,22 @@
 package com.catsix.systemprojectcatsix.model;
 
 public class ChatRoom {
-    private String chatroom_ID;
-    private String chatroom_name;
+    private String chat_room_ID;
+    private String chat_room_name;
 
-    public String getChatroom_ID() {
-        return chatroom_ID;
+    public String getChat_room_ID() {
+        return chat_room_ID;
     }
 
-    public void setChatroom_ID(String chatroom_ID) {
-        this.chatroom_ID = chatroom_ID;
+    public void setChat_room_ID(String chat_room_ID) {
+        this.chat_room_ID = chat_room_ID;
     }
 
-    public String getChatroom_name() {
-        return chatroom_name;
+    public String getChat_room_name() {
+        return chat_room_name;
     }
 
-    public void setChatroom_name(String chatroom_name) {
-        this.chatroom_name = chatroom_name;
+    public void setChat_room_name(String chat_room_name) {
+        this.chat_room_name = chat_room_name;
     }
 }
